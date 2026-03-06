@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const STRIPE_LINK = "https://buy.stripe.com/6oUbJ37Sc4t1fHpeVX0RG00";
+const STRIPE_LINK = "https://buy.stripe.com/3cI00i2Jbh0fgYg8r99IQ00";
 
 /* ── Helpers ── */
 function useInView(threshold = 0.1) {
