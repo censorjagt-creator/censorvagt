@@ -108,7 +108,6 @@ function FaqItem({ q, a }) {
   );
 }
 
-/* ── Email input + CTA button — shared between hero and pricing ── */
 function EmailCTA({ email, setEmail, emailError, submitted, onSubmit, fullWidth = false }) {
   const isMobile = useIsMobile(520);
   if (submitted) {
@@ -164,13 +163,12 @@ function EmailCTA({ email, setEmail, emailError, submitted, onSubmit, fullWidth 
   );
 }
 
-/* ── Main component ── */
 export default function Home() {
-  const [email, setEmail]         = useState("");
+  const [email, setEmail]           = useState("");
   const [emailError, setEmailError] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [scrollY, setScrollY]     = useState(0);
-  const [menuOpen, setMenuOpen]   = useState(false);
+  const [submitted, setSubmitted]   = useState(false);
+  const [scrollY, setScrollY]       = useState(0);
+  const [menuOpen, setMenuOpen]     = useState(false);
   const pricingRef = useRef(null);
   const isMobile   = useIsMobile(640);
 
@@ -180,14 +178,8 @@ export default function Home() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
-  const scrollToPricing = () => {
-    setMenuOpen(false);
-    pricingRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-  const scrollToFaq = () => {
-    setMenuOpen(false);
-    document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const scrollToPricing = () => { setMenuOpen(false); pricingRef.current?.scrollIntoView({ behavior: "smooth" }); };
+  const scrollToFaq     = () => { setMenuOpen(false); document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" }); };
 
   const handleSubmit = () => {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -200,7 +192,7 @@ export default function Home() {
   };
 
   const navSolid = scrollY > 50;
-  const P = "clamp(20px,4vw,80px)"; // horizontal page padding
+  const P = "clamp(20px,4vw,80px)";
 
   return (
     <>
@@ -240,109 +232,54 @@ export default function Home() {
         .anim-5 { animation: fadeIn 1.1s ease 0.8s both; }
         .shake  { animation: shake 0.4s ease; }
 
-        .gold-btn  { transition: filter 0.2s; }
         .gold-btn:hover  { filter: brightness(1.1); }
+        .gold-btn  { transition: filter 0.2s; }
         .ghost-btn { transition: background 0.2s, color 0.2s; }
         .ghost-btn:hover { background: rgba(201,168,76,0.08) !important; }
         .how-card  { transition: background 0.25s; }
         .how-card:hover { background: rgba(201,168,76,0.04) !important; }
         a.footer-link:hover { color: #c9a84c !important; }
 
-        /* global content cap on ultra-wide */
         .page-wrap { max-width: 1200px; margin: 0 auto; }
 
-        /* mobile menu */
         nav { box-sizing: border-box; }
         .nav-inner {
-          width: 100%;
-          max-width: 1280px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          height: 100%;
+          width: 100%; max-width: 1280px; margin: 0 auto;
+          display: flex; justify-content: space-between; align-items: center; height: 100%;
         }
-        .mobile-menu {
-          animation: slideDown 0.25s cubic-bezier(.22,1,.36,1) both;
-        }
+        .mobile-menu { animation: slideDown 0.25s cubic-bezier(.22,1,.36,1) both; }
 
-        /* stats bar */
         .stats-bar-outer {
           border-top: 1px solid rgba(255,255,255,0.06);
           border-bottom: 1px solid rgba(255,255,255,0.06);
           background: rgba(255,255,255,0.015);
         }
-        .stats-bar {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 0;
-          max-width: 1280px;
-          margin: 0 auto;
-        }
-        .stat-item {
-          padding: 36px 48px;
-          text-align: center;
-          flex: 1 1 160px;
-          min-width: 130px;
-        }
+        .stats-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; max-width: 1280px; margin: 0 auto; }
+        .stat-item { padding: 36px 48px; text-align: center; flex: 1 1 160px; min-width: 130px; }
         @media (max-width: 600px) {
           .stat-item { padding: 28px 20px; flex: 1 1 120px; }
           .stat-item-border { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
         }
 
-        /* how grid */
         .how-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 0;
-          border: 1px solid rgba(255,255,255,0.07);
-          margin-top: 52px;
+          display: grid; grid-template-columns: repeat(3, 1fr);
+          gap: 0; border: 1px solid rgba(255,255,255,0.07); margin-top: 52px;
         }
-        .how-card {
-          border-right: 1px solid rgba(255,255,255,0.07);
-        }
-        .how-card:last-child {
-          border-right: none;
-        }
+        .how-card { border-right: 1px solid rgba(255,255,255,0.07); }
+        .how-card:last-child { border-right: none; }
         @media (max-width: 700px) {
           .how-grid { grid-template-columns: 1fr; }
           .how-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
           .how-card:last-child { border-bottom: none; }
         }
 
-        /* pricing card full-width on tiny screens */
-        .pricing-card {
-          max-width: 420px;
-          width: 100%;
-          margin: 52px auto 0;
-        }
-        @media (max-width: 460px) {
-          .pricing-card { padding: 40px 24px !important; }
-        }
+        .pricing-card { max-width: 420px; width: 100%; margin: 52px auto 0; }
+        @media (max-width: 460px) { .pricing-card { padding: 40px 24px !important; } }
 
-        /* footer stacks on mobile */
-        .footer-inner {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 16px;
-        }
-        .footer-links {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 12px 20px;
-          align-items: center;
-        }
-        @media (max-width: 640px) {
-          .footer-inner { flex-direction: column; align-items: flex-start; }
-        }
-
-        /* hero eyebrow lines hide on very small screens */
-        @media (max-width: 400px) {
-          .eyebrow-line { display: none !important; }
-        }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+        @media (max-width: 640px) { .footer-inner { flex-direction: column; align-items: flex-start; } }
+        @media (max-width: 400px) { .eyebrow-line { display: none !important; } }
       `}</style>
 
       <div style={{ fontFamily: "'Crimson Pro', Georgia, serif", background: "#080f1e", color: "#e8e0d0", minHeight: "100vh" }}>
@@ -350,49 +287,38 @@ export default function Home() {
         {/* ── NAV ── */}
         <nav style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
-          height: "64px", padding: `0 ${P}`,
-          display: "flex", alignItems: "center",
+          height: "64px", padding: `0 ${P}`, display: "flex", alignItems: "center",
           background: navSolid || menuOpen ? "rgba(8,15,30,0.97)" : "transparent",
           backdropFilter: navSolid || menuOpen ? "blur(16px)" : "none",
           borderBottom: navSolid || menuOpen ? "1px solid rgba(201,168,76,0.13)" : "none",
           transition: "background 0.35s, border 0.35s",
         }}>
           <div className="nav-inner">
-          {/* Logo */}
-          <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 700, color: "#c9a84c", letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
-            ⚓ CensorVagt
-          </div>
-
-          {/* Desktop nav */}
-          {!isMobile && (
-            <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-              <button className="ghost-btn" onClick={scrollToPricing} style={{ background: "none", border: "none", color: "rgba(232,224,208,0.5)", fontFamily: "'Crimson Pro', serif", fontSize: "15px", cursor: "pointer", letterSpacing: "0.06em", padding: "6px 14px", borderRadius: "2px" }}>Pris</button>
-              <button className="ghost-btn" onClick={scrollToFaq} style={{ background: "none", border: "none", color: "rgba(232,224,208,0.5)", fontFamily: "'Crimson Pro', serif", fontSize: "15px", cursor: "pointer", letterSpacing: "0.06em", padding: "6px 14px", borderRadius: "2px" }}>FAQ</button>
-              <button className="gold-btn" onClick={scrollToPricing} style={{ background: "transparent", border: "1px solid rgba(201,168,76,0.45)", color: "#c9a84c", padding: "8px 22px", borderRadius: "2px", cursor: "pointer", fontFamily: "'Crimson Pro', serif", fontSize: "15px", letterSpacing: "0.08em", marginLeft: "6px" }}>Tilmeld →</button>
+            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "17px", fontWeight: 700, color: "#c9a84c", letterSpacing: "0.06em", display: "flex", alignItems: "center", gap: "8px", flexShrink: 0 }}>
+              ⚓ CensorVagt
             </div>
-          )}
-
-          {/* Hamburger */}
-          {isMobile && (
-            <button onClick={() => setMenuOpen(o => !o)} style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", display: "flex", flexDirection: "column", gap: "5px" }}>
-              {[0,1,2].map(i => (
-                <span key={i} style={{
-                  display: "block", width: "22px", height: "2px", background: "#c9a84c", borderRadius: "1px",
-                  transition: "transform 0.25s, opacity 0.25s",
-                  transform: menuOpen
-                    ? i === 0 ? "translateY(7px) rotate(45deg)"
-                    : i === 2 ? "translateY(-7px) rotate(-45deg)"
-                    : "scaleX(0)"
-                    : "none",
-                  opacity: menuOpen && i === 1 ? 0 : 1,
-                }} />
-              ))}
-            </button>
-          )}
+            {!isMobile && (
+              <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                <button className="ghost-btn" onClick={scrollToPricing} style={{ background: "none", border: "none", color: "rgba(232,224,208,0.5)", fontFamily: "'Crimson Pro', serif", fontSize: "15px", cursor: "pointer", letterSpacing: "0.06em", padding: "6px 14px", borderRadius: "2px" }}>Pris</button>
+                <button className="ghost-btn" onClick={scrollToFaq}     style={{ background: "none", border: "none", color: "rgba(232,224,208,0.5)", fontFamily: "'Crimson Pro', serif", fontSize: "15px", cursor: "pointer", letterSpacing: "0.06em", padding: "6px 14px", borderRadius: "2px" }}>FAQ</button>
+                <button className="gold-btn" onClick={scrollToPricing}  style={{ background: "transparent", border: "1px solid rgba(201,168,76,0.45)", color: "#c9a84c", padding: "8px 22px", borderRadius: "2px", cursor: "pointer", fontFamily: "'Crimson Pro', serif", fontSize: "15px", letterSpacing: "0.08em", marginLeft: "6px" }}>Tilmeld →</button>
+              </div>
+            )}
+            {isMobile && (
+              <button onClick={() => setMenuOpen(o => !o)} style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", display: "flex", flexDirection: "column", gap: "5px" }}>
+                {[0,1,2].map(i => (
+                  <span key={i} style={{
+                    display: "block", width: "22px", height: "2px", background: "#c9a84c", borderRadius: "1px",
+                    transition: "transform 0.25s, opacity 0.25s",
+                    transform: menuOpen ? i === 0 ? "translateY(7px) rotate(45deg)" : i === 2 ? "translateY(-7px) rotate(-45deg)" : "scaleX(0)" : "none",
+                    opacity: menuOpen && i === 1 ? 0 : 1,
+                  }} />
+                ))}
+              </button>
+            )}
           </div>
         </nav>
 
-        {/* Mobile dropdown menu */}
         {isMobile && menuOpen && (
           <div className="mobile-menu" style={{
             position: "fixed", top: "60px", left: 0, right: 0, zIndex: 190,
@@ -401,7 +327,7 @@ export default function Home() {
             padding: "16px 24px 24px", display: "flex", flexDirection: "column", gap: "4px",
           }}>
             <button onClick={scrollToPricing} style={{ background: "none", border: "none", color: "rgba(232,224,208,0.7)", fontFamily: "'Crimson Pro', serif", fontSize: "18px", cursor: "pointer", padding: "12px 0", textAlign: "left", borderBottom: "1px solid rgba(255,255,255,0.05)", letterSpacing: "0.05em" }}>Pris</button>
-            <button onClick={scrollToFaq} style={{ background: "none", border: "none", color: "rgba(232,224,208,0.7)", fontFamily: "'Crimson Pro', serif", fontSize: "18px", cursor: "pointer", padding: "12px 0", textAlign: "left", borderBottom: "1px solid rgba(255,255,255,0.05)", letterSpacing: "0.05em" }}>FAQ</button>
+            <button onClick={scrollToFaq}     style={{ background: "none", border: "none", color: "rgba(232,224,208,0.7)", fontFamily: "'Crimson Pro', serif", fontSize: "18px", cursor: "pointer", padding: "12px 0", textAlign: "left", borderBottom: "1px solid rgba(255,255,255,0.05)", letterSpacing: "0.05em" }}>FAQ</button>
             <button className="gold-btn" onClick={scrollToPricing} style={{ background: "#c9a84c", border: "none", color: "#080f1e", fontFamily: "'Playfair Display', serif", fontSize: "16px", fontWeight: 700, letterSpacing: "0.06em", padding: "14px", borderRadius: "2px", cursor: "pointer", marginTop: "12px" }}>
               Start abonnement →
             </button>
@@ -410,13 +336,11 @@ export default function Home() {
 
         {/* ── HERO ── */}
         <section style={{ minHeight: "100svh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: `clamp(100px,15vh,140px) ${P} 80px`, position: "relative", overflow: "hidden", width: "100%" }}>
-          {/* bg layers */}
           <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 90% 55% at 50% 0%, rgba(201,168,76,0.10) 0%, transparent 55%), radial-gradient(ellipse 50% 50% at 15% 85%, rgba(20,50,100,0.4) 0%, transparent 55%), linear-gradient(175deg, #0d1b35 0%, #080f1e 60%)" }} />
           <div style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.022, backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundSize: "128px 128px" }} />
           <div style={{ position: "absolute", bottom: "22%", left: "5%", right: "5%", height: "1px", background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.18), rgba(201,168,76,0.18), transparent)", pointerEvents: "none" }} />
           <WaveSvg />
 
-          {/* eyebrow */}
           <div className="anim-1" style={{ position: "relative" }}>
             <div style={{ display: "inline-flex", alignItems: "center", gap: "12px", fontFamily: "'Crimson Pro', serif", fontSize: "11px", letterSpacing: "0.26em", color: "#c9a84c", textTransform: "uppercase", marginBottom: "24px" }}>
               <span className="eyebrow-line" style={{ width: "32px", height: "1px", background: "rgba(201,168,76,0.5)", display: "block", flexShrink: 0 }} />
@@ -425,19 +349,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* headline */}
           <h1 className="anim-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(44px, 7vw, 88px)", fontWeight: 700, lineHeight: 1.05, letterSpacing: "-0.025em", position: "relative" }}>
             Gå aldrig glip af
             <span style={{ fontStyle: "italic", color: "#c9a84c", display: "block" }}>en prøve igen</span>
           </h1>
 
-          {/* sub */}
           <p className="anim-3" style={{ fontSize: "clamp(15px, 2.5vw, 20px)", color: "rgba(232,224,208,0.58)", maxWidth: "480px", margin: "24px auto 44px", lineHeight: 1.8, fontWeight: 300 }}>
             Vi holder øje med Danish Yacht Union døgnet rundt og sender dig en direkte mail,
             så snart en ny prøve mangler censor.
           </p>
 
-          {/* CTA */}
           <div className="anim-4" style={{ width: "100%", maxWidth: "460px", display: "flex", flexDirection: "column" }}>
             <EmailCTA email={email} setEmail={setEmail} emailError={emailError} submitted={submitted} onSubmit={handleSubmit} />
             <p style={{ marginTop: "14px", fontSize: "11px", color: "rgba(232,224,208,0.3)", letterSpacing: "0.12em" }}>
@@ -458,9 +379,9 @@ export default function Home() {
                 { num: "< 5 min", label: "Reaktionstid" },
                 { num: "24/7",    label: "Overvågning" },
                 { num: "100%",    label: "DYU-dækning" },
-                { num: "100 kr",   label: "Pr. måned" },
+                { num: "100 kr",  label: "Pr. måned" },
               ].map((s, i) => (
-                <div key={i} className={`stat-item stat-item-border`} style={{ borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                <div key={i} className="stat-item stat-item-border" style={{ borderRight: i < 3 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
                   <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(24px, 3.5vw, 34px)", fontWeight: 700, color: "#c9a84c", lineHeight: 1 }}>{s.num}</div>
                   <div style={{ fontSize: "11px", color: "rgba(232,224,208,0.36)", letterSpacing: "0.14em", marginTop: "8px", textTransform: "uppercase" }}>{s.label}</div>
                 </div>
@@ -477,15 +398,13 @@ export default function Home() {
               Tre trin til<br />din næste opgave
             </h2>
             <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "rgba(232,224,208,0.55)", lineHeight: 1.85, maxWidth: "500px", fontWeight: 300 }}>
-              Vi overvåger DYU's prøvekalender automatisk og notificerer dig i det øjeblik
-              en ny prøve mangler censor.
+              Vi overvåger DYU's prøvekalender automatisk og notificerer dig i det øjeblik en ny prøve mangler censor.
             </p>
           </Reveal>
-
           <div className="how-grid">
             {[
               { num: "01", icon: "📬", title: "Tilmeld med email", body: "Opret dit abonnement på under 60 sekunder. Kun din email — ingen apps, ingen konti at huske." },
-              { num: "02", icon: "🔭", title: "Vi holder øje", body: "Vores system tjekker DYU løbende. Nye prøver uden censor fanges automatisk, dag og nat." },
+              { num: "02", icon: "🔭", title: "Vi holder øje",     body: "Vores system tjekker DYU løbende. Nye prøver uden censor fanges automatisk, dag og nat." },
               { num: "03", icon: "⚡", title: "Du får besked straks", body: "En klar email med prøvenavn, dato, sted og direkte tilmeldingslink. Klik og book." },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
@@ -502,6 +421,80 @@ export default function Home() {
 
         <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.18), transparent)", margin: `0 ${P}` }} />
 
+        {/* ── EMAIL PREVIEW ── */}
+        <section style={{ maxWidth: "1280px", margin: "0 auto", padding: `80px ${P}` }}>
+          <Reveal>
+            <div style={{ fontSize: "11px", letterSpacing: "0.26em", color: "#c9a84c", textTransform: "uppercase", marginBottom: "12px" }}>Eksempel</div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,5vw,48px)", fontWeight: 700, lineHeight: 1.1, marginBottom: "16px" }}>
+              Sådan ser<br />notifikationen ud
+            </h2>
+            <p style={{ fontSize: "clamp(15px,2vw,18px)", color: "rgba(232,224,208,0.55)", lineHeight: 1.85, maxWidth: "480px", fontWeight: 300, marginBottom: "52px" }}>
+              Én klar mail med alt hvad du behøver. Klik direkte og tilmeld dig som censor.
+            </p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div style={{ maxWidth: "620px", margin: "0 auto" }}>
+              {/* Chrome bar */}
+              <div style={{ background: "#1a1a2e", borderRadius: "8px 8px 0 0", padding: "12px 16px", display: "flex", alignItems: "center", gap: "8px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ff5f56", display: "inline-block", flexShrink: 0 }} />
+                <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#ffbd2e", display: "inline-block", flexShrink: 0 }} />
+                <span style={{ width: "12px", height: "12px", borderRadius: "50%", background: "#27c93f", display: "inline-block", flexShrink: 0 }} />
+                <span style={{ flex: 1, background: "rgba(255,255,255,0.05)", borderRadius: "4px", padding: "4px 12px", fontSize: "11px", color: "rgba(232,224,208,0.3)", marginLeft: "8px", letterSpacing: "0.04em", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  ⚓ 1 ny prøve mangler censor — CensorVagt
+                </span>
+              </div>
+              {/* From/to */}
+              <div style={{ background: "#12192e", padding: "12px 20px", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
+                <div style={{ fontSize: "12px", color: "rgba(232,224,208,0.35)" }}>
+                  <span style={{ color: "rgba(232,224,208,0.5)" }}>Fra:</span> censorjagt@gmail.com &nbsp;·&nbsp;
+                  <span style={{ color: "rgba(232,224,208,0.5)" }}>Til:</span> dig@email.dk
+                </div>
+                <div style={{ fontSize: "11px", color: "rgba(232,224,208,0.22)" }}>Lige nu</div>
+              </div>
+              {/* Body */}
+              <div style={{ background: "#0d1b35", borderRadius: "0 0 8px 8px", overflow: "hidden", border: "1px solid rgba(201,168,76,0.15)", borderTop: "none" }}>
+                <div style={{ background: "#080f1e", padding: "20px 28px", borderBottom: "1px solid rgba(201,168,76,0.18)", textAlign: "center" }}>
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", fontWeight: 700, color: "#c9a84c", letterSpacing: "0.08em" }}>⚓ CensorVagt</span>
+                </div>
+                <div style={{ padding: "28px 28px 24px" }}>
+                  <div style={{ fontSize: "10px", letterSpacing: "0.2em", color: "rgba(232,224,208,0.32)", textTransform: "uppercase", marginBottom: "4px" }}>Ny aktivitet</div>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "22px", fontWeight: 700, color: "#e8e0d0", lineHeight: 1.1, marginBottom: "10px" }}>
+                    1 ny prøve mangler censor
+                  </div>
+                  <p style={{ fontSize: "14px", color: "rgba(232,224,208,0.5)", lineHeight: 1.75, marginBottom: "24px", fontWeight: 300 }}>
+                    Vi fandt netop nye prøver, der mangler en tilmeldt censor. Vær hurtig — første til at klikke får opgaven.
+                  </p>
+                  {/* Exam card */}
+                  <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(201,168,76,0.2)", borderRadius: "4px", padding: "20px 22px 16px", marginBottom: "20px" }}>
+                    <div style={{ fontSize: "9px", letterSpacing: "0.18em", color: "rgba(232,224,208,0.3)", textTransform: "uppercase", marginBottom: "4px" }}>Ny prøve uden censor</div>
+                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", fontWeight: 700, color: "#e8e0d0", marginBottom: "14px" }}>
+                      Speedbådsprøve <span style={{ color: "rgba(232,224,208,0.3)", fontWeight: 400, fontSize: "13px" }}>(ID: 4821)</span>
+                    </div>
+                    {[
+                      { icon: "📅", label: "DATO",     val: "Lørdag d. 14. juni 2025 kl. 09:00" },
+                      { icon: "📍", label: "STED",     val: "Sejlerkort.dk, København" },
+                      { icon: "🏷️", label: "KATEGORI", val: "Speedbådsprøve" },
+                    ].map((r, i) => (
+                      <div key={i} style={{ paddingTop: "8px", paddingBottom: "4px", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                        <div style={{ fontSize: "10px", color: "rgba(232,224,208,0.32)", letterSpacing: "0.12em" }}>{r.icon} {r.label}</div>
+                        <div style={{ fontSize: "13px", color: "#e8e0d0" }}>{r.val}</div>
+                      </div>
+                    ))}
+                    <div style={{ marginTop: "16px", display: "inline-block", background: "#c9a84c", borderRadius: "3px", padding: "9px 18px" }}>
+                      <span style={{ color: "#080f1e", fontFamily: "'Playfair Display', serif", fontSize: "13px", fontWeight: 700, letterSpacing: "0.04em" }}>Tilmeld som censor →</span>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: "11px", color: "rgba(232,224,208,0.22)", lineHeight: 1.7 }}>
+                    Du modtager denne mail fordi du abonnerer på CensorVagt &nbsp;·&nbsp; <span style={{ color: "rgba(201,168,76,0.4)" }}>Opsig via Stripe</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <div style={{ height: "1px", background: "linear-gradient(90deg, transparent, rgba(201,168,76,0.18), transparent)", margin: `0 ${P}` }} />
+
         {/* ── PRICING ── */}
         <section id="pricing" ref={pricingRef} style={{ maxWidth: "1280px", margin: "0 auto", padding: `80px ${P}` }}>
           <Reveal>
@@ -512,17 +505,11 @@ export default function Home() {
               </h2>
             </div>
           </Reveal>
-
           <Reveal delay={0.15}>
-            <div className="pricing-card" style={{
-              background: "linear-gradient(145deg, rgba(201,168,76,0.07) 0%, rgba(13,27,53,0.6) 100%)",
-              border: "1px solid rgba(201,168,76,0.22)", borderRadius: "4px",
-              padding: "48px 36px", textAlign: "center", position: "relative",
-            }}>
+            <div className="pricing-card" style={{ background: "linear-gradient(145deg, rgba(201,168,76,0.07) 0%, rgba(13,27,53,0.6) 100%)", border: "1px solid rgba(201,168,76,0.22)", borderRadius: "4px", padding: "48px 36px", textAlign: "center", position: "relative" }}>
               <div style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: "#c9a84c", color: "#080f1e", fontSize: "10px", fontWeight: 700, letterSpacing: "0.16em", padding: "4px 18px", fontFamily: "'Crimson Pro', serif", whiteSpace: "nowrap", borderRadius: "1px" }}>
                 LANCERINGSTILBUD
               </div>
-
               <div style={{ marginTop: "8px" }}>
                 <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "82px", fontWeight: 700, color: "#e8e0d0", lineHeight: 1 }}>100</span>
                 <span style={{ color: "rgba(232,224,208,0.4)", fontSize: "22px", fontFamily: "'Playfair Display', serif" }}> kr</span>
@@ -530,7 +517,6 @@ export default function Home() {
               <div style={{ color: "rgba(232,224,208,0.36)", fontSize: "12px", letterSpacing: "0.1em", marginBottom: "32px", textTransform: "uppercase" }}>
                 Per måned &nbsp;·&nbsp; Forny månedligt
               </div>
-
               <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", textAlign: "left" }}>
                 {["Øjeblikkelig email-notifikation", "Alle prøvetyper og skoler hos DYU", "Direkte tilmeldingslink i mailen", "Opsig selv via dit Stripe-dashboard", "Ingen binding eller minimumsperiode"].map((f, i) => (
                   <li key={i} style={{ padding: "10px 0", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", alignItems: "center", gap: "12px", fontSize: "clamp(14px,2vw,16px)", color: "rgba(232,224,208,0.75)" }}>
@@ -538,7 +524,6 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-
               {submitted ? (
                 <div style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.28)", borderRadius: "2px", padding: "16px", color: "rgba(134,239,172,0.9)", fontFamily: "'Playfair Display', serif", fontSize: "15px" }}>
                   ✓ Tjek din email for bekræftelse!
@@ -607,13 +592,9 @@ export default function Home() {
                 kontakt@censorvagt.dk
               </a>
               <span style={{ opacity: 0.4 }}>·</span>
-              <Link to="/privacy-policy" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>
-                Privatlivspolitik
-              </Link>
+              <Link to="/privacy-policy" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>Privatlivspolitik</Link>
               <span style={{ opacity: 0.4 }}>·</span>
-              <Link to="/terms-and-conditions" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>
-                Vilkår og betingelser
-              </Link>
+              <Link to="/terms-and-conditions" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>Vilkår og betingelser</Link>
               <span style={{ opacity: 0.4 }}>·</span>
               <span>Ikke affilieret med Danish Yacht Union</span>
               <span style={{ opacity: 0.4 }}>·</span>
