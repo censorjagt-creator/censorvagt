@@ -1,0 +1,73 @@
+.legal-container {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: #080f1e;
+  color: #e8e0d0;
+  padding: 80px clamp(20px,4vw,80px);
+  max-width: 860px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.legal-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px,5vw,48px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: #c9a84c;
+}
+
+.legal-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px,4vw,36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+
+.legal-container h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px,3vw,28px);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.legal-container h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(18px,2.5vw,24px);
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.legal-container p, .legal-container li {
+  font-size: clamp(15px,2vw,18px);
+  color: rgba(232,224,208,0.55);
+  line-height: 1.85;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.legal-container ul {
+  list-style-position: inside;
+  padding-left: 20px;
+}
+
+.legal-container strong {
+  font-weight: 600;
+  color: rgba(232,224,208,0.75);
+}
+
+.legal-container a {
+  color: #c9a84c;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.legal-container a:hover {
+  text-decoration: underline;
+}

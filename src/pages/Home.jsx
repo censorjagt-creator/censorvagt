@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const STRIPE_LINK = "https://buy.stripe.com/3cI00i2Jbh0fgYg8r99IQ00";
 
@@ -164,7 +165,7 @@ function EmailCTA({ email, setEmail, emailError, submitted, onSubmit, fullWidth 
 }
 
 /* ── Main component ── */
-export default function CensorVagt() {
+export default function Home() {
   const [email, setEmail]         = useState("");
   const [emailError, setEmailError] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -605,6 +606,14 @@ export default function CensorVagt() {
               <a href="mailto:kontakt@censorvagt.dk" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>
                 kontakt@censorvagt.dk
               </a>
+              <span style={{ opacity: 0.4 }}>·</span>
+              <Link to="/privacy-policy" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>
+                Privatlivspolitik
+              </Link>
+              <span style={{ opacity: 0.4 }}>·</span>
+              <Link to="/terms-and-conditions" className="footer-link" style={{ color: "rgba(232,224,208,0.26)", textDecoration: "none", transition: "color 0.2s" }}>
+                Vilkår og betingelser
+              </Link>
               <span style={{ opacity: 0.4 }}>·</span>
               <span>Ikke affilieret med Danish Yacht Union</span>
               <span style={{ opacity: 0.4 }}>·</span>
